@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0;  font-family: 'Barlow', sans-serif!important; }
+
+.mat-raised-button {
+
+  &.mat-primary {
+  background-color: #536DFE!important;
+  }
+
+  &.mat-accent {
+    background-color: #5CD85A!important;
+  }
+}
+
+.mat-body, .mat-body-1, .mat-typography, .mat-table, .mat-typography h1, .mat-typography h2, .mat-typography h3{
+  font-family: 'Barlow', sans-serif!important;
+  letter-spacing: normal;
+}
+
+

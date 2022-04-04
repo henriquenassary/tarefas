@@ -1,0 +1,116 @@
+<div class="navbar bg-dark">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <img src="../../../assets/imagens/start-up.png" alt="" width="50">
+      </div>
+      <div class="col">
+        <!-- <button mat-raised-button color="primary" [matMenuTriggerFor]="aboveMenu">Above</button>
+        <mat-menu #aboveMenu="matMenu" yPosition="above">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="belowMenu">Below</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="beforeMenu">Before</button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="afterMenu">After</button>
+        <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu> -->
+        <h1 class="text-white mb-0">Tarefas Henrique</h1>
+      </div>
+    </div>
+  </div>
+
+</div>
+<section>
+  <div class="container mt-4">
+    <h3>Adicionar nova Tarefa</h3>
+    <hr>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Informe uma nova tarefa</mat-label>
+            <input type="text" matInput formControlName="description" placeholder="Ex. Reunião 23/10">
+            <mat-error *ngIf="validated">
+              Informe uma tarefa válida!
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Selecione uma data para a tarefa</mat-label>
+            <input matInput formControlName="dateTask" [matDatepicker]="picker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="(!form.valid)" class="btn btn-primary">Adicionar</button>
+        </div>
+        <div class="col-md-1">
+          <img src="../../../assets/imagens/task.png" alt="" width="80">
+        </div>
+      </div>
+    </form>
+    <hr>
+    <h1>Tarefas</h1>
+    <div class="row">
+      <div class="col-12">
+        <table mat-table [dataSource]="todos" class="table-primary">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let todos"> {{todos.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Descrição </th>
+          <td mat-cell *matCellDef="let todos"> {{todos.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateTask">
+          <th mat-header-cell *matHeaderCellDef> Data Limite </th>
+          <td mat-cell *matCellDef="let todos"> {{todos.dateTask | date : 'dd/MM/yyyy'}}  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="doneDate">
+          <th mat-header-cell *matHeaderCellDef> Conclusão </th>
+          <td mat-cell *matCellDef="let todos"> {{todos.doneDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="açoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let todos">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button mat-raised-button color="accent" type="button" class="btn" [disabled]="todos.done" (click)="done(todos)">Concluido</button>
+              <button mat-raised-button color="warn" type="button" class="btn" (click)="delete(todos)">Excluir</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="iconDone" >
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let todos"><img *ngIf="todos.done" src="../../../assets/imagens/start-up.png" alt="" width="30"></td>
+
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="headers"></tr>
+        <tr mat-row *matRowDef="let row; columns: headers;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
